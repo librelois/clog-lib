@@ -31,14 +31,14 @@ macro_rules! debug {
 
 #[cfg(not(feature = "debug"))]
 macro_rules! debugln {
-    ($fmt:expr) => ();
-    ($fmt:expr, $($arg:tt)*) => ();
+    ($fmt:expr) => {};
+    ($fmt:expr, $($arg:tt)*) => {};
 }
 
 #[cfg(not(feature = "debug"))]
 macro_rules! debug {
-    ($fmt:expr) => ();
-    ($fmt:expr, $($arg:tt)*) => ();
+    ($fmt:expr) => {};
+    ($fmt:expr, $($arg:tt)*) => {};
 }
 
 /// Convenience macro taken from https://github.com/kbknapp/clap-rs to generate more complete enums
@@ -205,7 +205,6 @@ macro_rules! clog_enum {
             type Err = String;
 
             fn from_str(s: &str) -> Result<Self,Self::Err> {
-                use ::std::ascii::AsciiExt;
                 match s {
                     $(stringify!($v) |
                     _ if s.eq_ignore_ascii_case(stringify!($v)) => Ok($e::$v),)+

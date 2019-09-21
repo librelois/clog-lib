@@ -22,7 +22,7 @@ pub enum Error {
     /// Generic catch all I/O related error
     IoErr,
     /// Unknown, but fatal error (a catch all)
-    UnknownErr
+    UnknownErr,
 }
 
 // Shamelessly taken and adopted from https://github.com/BurntSushi :)
@@ -72,7 +72,7 @@ impl StdError for Error {
         }
     }
 
-    fn cause(&self) -> Option<&StdError> {
+    fn cause(&self) -> Option<&dyn StdError> {
         match *self {
             _ => None,
         }
